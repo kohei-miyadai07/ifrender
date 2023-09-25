@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+function Item({ name, isPacked }) {
+  let itemContent = name;
+  if (isPacked) {
+    itemContent = (
+      <>
+        <del>{name + '✔'}</del>
+        <p></p>
+      </>
+    );
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <li>{itemContent}</li>
+    </>
   );
 }
 
-export default App;
+function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item isPacked={true} name="Space suit"></Item>
+        <Item isPacked={true} name="Helmet with a golden leaf"></Item>
+        <Item isPacked={false} name="Photo of Tam"></Item>
+      </ul>
+    </section>
+  );
+}
+
+export default PackingList;
